@@ -1,0 +1,53 @@
+name: deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 自动补充 frontmatter（纯文本文章自动包装）
+        run: |
+          mkdir -p content/posts
+          for f in content/posts/*.md; do
+            [ -e "$f" ] || continue
+            if ! head -n 1 "$f" | grep -q '^---'; then
+              TITLE=$(head -n 1 "$f" | cut -c1-30 | sed 's/"/\\"/g')
+              DATE=$(date -Iseconds)
+              sed -i "1i ---\ntitle: \"$TITLE\"\ndate: $DATE\ndraft: false\n---\n" "$f"
+            fi
+          done
+
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - run: hugo --minify
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
