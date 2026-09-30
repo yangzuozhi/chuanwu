@@ -1,0 +1,146 @@
+/* ============================================
+   碎石路 · 同楼会 语音博客定制美化
+   通过 PaperMod 官方 extended 机制合并进主样式
+   ============================================ */
+
+/* ---- 主题色：科技蓝 ---- */
+:root {
+    --primary: rgb(37, 99, 235);
+    --primary-dim: rgb(29, 78, 216);
+    --link-color: rgb(37, 99, 235);
+    --link-hover-color: rgb(29, 78, 216);
+    --radius: 14px;
+}
+[data-theme="dark"] {
+    --primary: rgb(96, 165, 250);
+    --primary-dim: rgb(59, 130, 246);
+    --link-color: rgb(96, 165, 250);
+    --link-hover-color: rgb(125, 185, 252);
+}
+
+/* ---- 首页信息区：渐变卡片 ---- */
+.home-info {
+    background: linear-gradient(135deg,
+        rgba(37, 99, 235, 0.10),
+        rgba(14, 165, 233, 0.06),
+        rgba(16, 185, 129, 0.07));
+    border: 1px solid rgba(37, 99, 235, 0.16);
+    border-radius: 18px;
+    padding: 26px 30px;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.06);
+}
+[data-theme="dark"] .home-info {
+    background: linear-gradient(135deg,
+        rgba(96, 165, 250, 0.12),
+        rgba(14, 165, 233, 0.06),
+        rgba(16, 185, 129, 0.06));
+    border-color: rgba(96, 165, 250, 0.18);
+}
+.home-info .entry-header h2 {
+    color: var(--primary);
+    letter-spacing: 1px;
+}
+
+/* ---- 文章条目卡片：圆角 + 阴影 + 悬停上浮 ---- */
+.post-entry {
+    border-radius: 14px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.post-entry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.10);
+    border-color: rgba(37, 99, 235, 0.30);
+}
+[data-theme="dark"] .post-entry:hover {
+    border-color: rgba(96, 165, 250, 0.35);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+}
+
+/* ---- 文章标题 ---- */
+.post-title {
+    color: var(--primary);
+}
+.post-title:hover {
+    text-decoration: underline;
+}
+
+/* ---- 导航链接 ---- */
+.nav a:hover,
+#menu a:hover,
+.lang-switch li:hover {
+    color: var(--primary);
+}
+
+/* ---- 标签胶囊 ---- */
+.tag a,
+.term-tags a {
+    border-radius: 20px;
+    padding: 3px 13px;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+.tag a:hover,
+.term-tags a:hover {
+    background: rgba(37, 99, 235, 0.08);
+    border-color: rgba(37, 99, 235, 0.30);
+    color: var(--primary);
+}
+[data-theme="dark"] .tag a:hover,
+[data-theme="dark"] .term-tags a:hover {
+    background: rgba(96, 165, 250, 0.12);
+    border-color: rgba(96, 165, 250, 0.30);
+}
+
+/* ---- 归档条目 hover ---- */
+.archive-entry:hover {
+    color: var(--primary);
+}
+
+/* ---- 代码块圆角 ---- */
+pre {
+    border-radius: 10px;
+}
+
+/* ---- 按钮/链接强调 ---- */
+#top-link {
+    border-radius: 50%;
+}
+
+/* ---- 页脚分割线 ---- */
+footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+[data-theme="dark"] footer {
+    border-top-color: rgba(255, 255, 255, 0.09);
+}
+
+/* ---- 文章页阅读区域微调 ---- */
+.post-content {
+    line-height: 1.85;
+}
+.post-content h1,
+.post-content h2,
+.post-content h3 {
+    color: var(--primary-dim);
+}
+[data-theme="dark"] .post-content h1,
+[data-theme="dark"] .post-content h2,
+[data-theme="dark"] .post-content h3 {
+    color: var(--primary);
+}
+
+/* ---- 文章内图片圆角 ---- */
+.post-content img {
+    border-radius: 12px;
+}
+
+/* ---- 表格圆角与边框 ---- */
+.post-content table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* ---- 首页 RSS 图标保留 PaperMod 橙，稍加高亮 ---- */
+.social-icons a:hover {
+    opacity: 0.75;
+}
